@@ -1,46 +1,45 @@
-// Données de base
-const etudiant1 = {
-    id: 104,
-    prenom: "Aminata",
-    nom: "Fall",
-    notes: [13, 16, 12],
-    filiere: "IAGE"
+// Donnees
+const etudiant1={
+    id:104,
+    prenom:"Aminata",
+    nom:"Fall",
+    notes:[13,16,12],
+    filiere:"IAGE",
 };
 
-// 1. Extraire l'identité avec destructuring
-function extraireIdentite(etudiant) {
-    const { prenom, nom, filiere } = etudiant;
-    return { prenom: prenom, nom: nom, filiere: filiere };
+// extraire l'identite avec destructuring
+function extraireIdentite(etudiant){
+ const {prenom,nom,filiere} =etudiant;
+ return {prenom:prenom,nom:nom,filiere:filiere} ;
+
+}
+console.log("1.identite extraite:",extraireIdentite(etudiant1));
+// la moyenne des notes
+function calculerMoyenneNotes(notes){
+    if (!notes || notes.length ==0)
+        return 0;
+    const som = notes.reduce((acc,note) =>acc + note ,0);
+    return Number(som / notes.length);
 }
 
-console.log("1. Identité extraite :", extraireIdentite(etudiant1));
-// 2. Calculer la moyenne des notes
-function calculerMoyenneNotes(notes) {
-    if (!notes || notes.length === 0) return 0;
-    const somme = notes.reduce((acc, note) => acc + note, 0);
-    return Number(somme / notes.length); 
-}
-// 3. Ajouter une note sans modifier l'objet ni le tableau d'origine (Immutabilité)
-function ajouterNote(etudiant, nouvelleNote) {
-    return {
+// ajouter une note sans modification
+function ajouterNote(etudiant,nouvelleNote){
+    return{
         ...etudiant,
-        notes: [...etudiant.notes, nouvelleNote]
+        notes: [...etudiant.notes,nouvelleNote]
+
     };
 }
-//4. Créer un résumé avec l'identité, la moyenne et les options (...rest)
-function creerResume(etudiant, ...options) {
+// creer un reume 
+function creerResum(etudiant,...options){
     const identite = extraireIdentite(etudiant);
-    const moyenne = calculerMoyenneNotes(etudiant.notes);
-    
+    const moyenne= calculerMoyenneNotes(etudiant.notes);
     return {
-        ...identite,
+        ... identite,
         moyenne,
-        options // Tableau des options reçues
+        options
     };
-}
-
-
-
+};
 
 //Questions de copmprehension
 //  1. 
